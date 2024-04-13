@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgqfgvlqgj12p"]
+[gd_scene load_steps=5 format=3 uid="uid://cgqfgvlqgj12p"]
 
 [ext_resource type="PackedScene" uid="uid://cvm4bosldv0kg" path="res://Scenes/level.tscn" id="1_bqcgs"]
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_hkfox"]
 [ext_resource type="PackedScene" uid="uid://dsuto2fq2v25w" path="res://Scenes/player.tscn" id="2_fhepb"]
+[ext_resource type="PackedScene" uid="uid://cj3glqqtfc4og" path="res://Scenes/ui.tscn" id="4_pkjby"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_hkfox")
@@ -27,5 +28,9 @@ position = Vector2(350, 150)
 [node name="BoneTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_pkjby")]
 
 [connection signal="timeout" from="BoneTimer" to="." method="_on_bone_timer_timeout"]

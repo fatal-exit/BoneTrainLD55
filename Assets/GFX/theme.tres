@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://e0t1x5pqcurp"]
+
+[ext_resource type="FontFile" uid="uid://b40ork73p0v1o" path="res://Assets/Fonts/Kenney High Square.ttf" id="1_kbe0e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2trst"]
+
+[resource]
+Label/colors/font_color = Color(0.901961, 0.831373, 0.745098, 1)
+Label/colors/font_outline_color = Color(0.207843, 0.168627, 0.188235, 1)
+Label/colors/font_shadow_color = Color(0.207843, 0.168627, 0.188235, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 2
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 3
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 28
+Label/fonts/font = ExtResource("1_kbe0e")
+Label/styles/normal = SubResource("StyleBoxEmpty_2trst")

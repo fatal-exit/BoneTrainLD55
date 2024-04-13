@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj3glqqtfc4og"]
+
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_sx6as"]
+[ext_resource type="Theme" uid="uid://e0t1x5pqcurp" path="res://Assets/GFX/theme.tres" id="2_36grq"]
+[ext_resource type="AudioStream" uid="uid://qkivayaey1n1" path="res://Assets/Sound/SFX/BoneLose.ogg" id="2_ksx8q"]
+[ext_resource type="FontFile" uid="uid://b40ork73p0v1o" path="res://Assets/Fonts/Kenney High Square.ttf" id="2_m8xcf"]
+[ext_resource type="AudioStream" uid="uid://b68vbfclak2qv" path="res://Assets/Sound/SFX/BoneBlip2.ogg" id="3_vrlty"]
+[ext_resource type="AudioStream" uid="uid://bjumokow231ux" path="res://Assets/Sound/Music/GlockenspielForLD55.ogg" id="4_dff2w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2trst"]
+
+[sub_resource type="Theme" id="Theme_j7rct"]
+Label/colors/font_color = Color(0.901961, 0.831373, 0.745098, 1)
+Label/colors/font_outline_color = Color(0.207843, 0.168627, 0.188235, 1)
+Label/colors/font_shadow_color = Color(0.207843, 0.168627, 0.188235, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 2
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 3
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("2_m8xcf")
+Label/styles/normal = SubResource("StyleBoxEmpty_2trst")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sx6as")
+loss_sfx = ExtResource("2_ksx8q")
+blip_sfx = ExtResource("3_vrlty")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ContextLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_36grq")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = SubResource("Theme_j7rct")
+text = "BONES:00"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 80
+
+[node name="FinalScore" type="Label" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_36grq")
+text = "YOU SCORED:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dff2w")
+autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]

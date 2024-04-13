@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsuto2fq2v25w"]
+[gd_scene load_steps=13 format=3 uid="uid://dsuto2fq2v25w"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_ff5ue"]
-[ext_resource type="Texture2D" uid="uid://duvr883fqc43f" path="res://Assets/GFX/NWSkeleton.png" id="2_a4x8w"]
+[ext_resource type="Texture2D" uid="uid://bdft2pg4pohdq" path="res://Assets/GFX/EaterSkeleton.png" id="2_4du4n"]
+[ext_resource type="AudioStream" uid="uid://dagx7rlrmi6sa" path="res://Assets/Sound/SFX/BoneCoin.ogg" id="2_e6e1n"]
+[ext_resource type="AudioStream" uid="uid://o82gmjywr3bi" path="res://Assets/Sound/SFX/BoneGeneration.ogg" id="3_lqw0l"]
+[ext_resource type="AudioStream" uid="uid://ccnxdrmwrm1lf" path="res://Assets/Sound/SFX/BoneBlip.ogg" id="3_y2cdb"]
 
 [sub_resource type="Animation" id="Animation_0tpnh"]
 resource_name = "Right"
@@ -303,11 +306,14 @@ _data = {
 size = Vector2(14, 14)
 
 [node name="Player" type="Area2D" groups=["PlayerHead"]]
+z_index = 1
 script = ExtResource("1_ff5ue")
+bone_collect_sfx = ExtResource("2_e6e1n")
+skeleton_create_sfx = ExtResource("3_lqw0l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)
-texture = ExtResource("2_a4x8w")
+texture = ExtResource("2_4du4n")
 hframes = 12
 
 [node name="Marker2D" type="Marker2D" parent="Sprite2D"]
@@ -319,11 +325,22 @@ libraries = {
 }
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_dlhst")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="SFXPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MovementPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_y2cdb")
+max_polyphony = 2
+bus = &"SFX"
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
