@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgqfgvlqgj12p"]
+
+[ext_resource type="PackedScene" uid="uid://cvm4bosldv0kg" path="res://Scenes/level.tscn" id="1_bqcgs"]
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_hkfox"]
+[ext_resource type="PackedScene" uid="uid://dsuto2fq2v25w" path="res://Scenes/player.tscn" id="2_fhepb"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_hkfox")
+
+[node name="Level" parent="." instance=ExtResource("1_bqcgs")]
+
+[node name="Player" parent="." instance=ExtResource("2_fhepb")]
+position = Vector2(160, 96)
+
+[node name="BoneSpawner" type="Marker2D" parent="."]
+position = Vector2(-50, 50)
+
+[node name="BoneSpawner2" type="Marker2D" parent="."]
+position = Vector2(-50, 150)
+
+[node name="BoneSpawner3" type="Marker2D" parent="."]
+position = Vector2(350, 50)
+
+[node name="BoneSpawner4" type="Marker2D" parent="."]
+position = Vector2(350, 150)
+
+[node name="BoneTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="BoneTimer" to="." method="_on_bone_timer_timeout"]
